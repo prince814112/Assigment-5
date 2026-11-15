@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaf & Bean | Your Neighbourhood Café</title>
+    <link rel="stylesheet" href="style.css">
+    <style>/* Basic Reset - Box Model practice */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    background-color: #f0f5f5;
+    color: #16302b;
+    line-height: 1.5;
+    padding: 30px 15px;
+}
+
+/* Main container centered using margin auto */
+.page-wrapper {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    border: 1px solid #d5e0df;
+}
+
+/* Header & Footer Bar (Normal Flow + Positioning instead of Flexbox) */
+.top-bar,
+.bottom-bar {
+    background-color: #163a35;
+    color: #ffffff;
+    padding: 15px 24px;
+    position: relative;
+}
+
+.brand-logo,
+.copyright-text {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+}
+
+/* Positioning navigation links to the right side of the bar */
+.nav-links,
+.footer-links {
+    position: absolute;
+    right: 24px;
+    top: 15px;
+}
+
+.nav-links a,
+.footer-links a {
+    color: #e2eceb;
+    text-decoration: none;
+    font-size: 13px;
+    margin-left: 16px;
+}
+
+.nav-links a:hover,
+.footer-links a:hover {
+    color: #f3c663;
+    text-decoration: underline;
+}
+
+/* Hero Section - Using position: relative and z-index for the overlay */
+.hero-box {
+    position: relative;
+    background-color: #26543d;
+    background-image: linear-gradient(135deg, #2a5a41 0%, #1d4230 100%);
+    padding: 38px 24px 32px 24px;
+    color: #ffffff;
+    overflow: hidden;
+    border-top: 1px solid #3c6e56;
+}
+
+/* Dark overlay layer sitting behind the text */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 38, 26, 0.35);
+    z-index: 1;
+}
+
+/* Hero text placed above the overlay using z-index: 2 */
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-tag {
+    color: #e6c56f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.hero-content h1 {
+    font-size: 32px;
+    line-height: 1.25;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.hero-sub {
+    font-size: 14px;
+    color: #dce7e2;
+    margin-bottom: 18px;
+}
+
+.cta-btn {
+    display: inline-block;
+    background-color: #0e6b68;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 9px 48px 9px 14px;
+    border-radius: 4px;
+    border: 1px solid #0b5452;
+}
+
+.cta-btn:hover {
+    background-color: #0a5350;
+}
+
+/* Main Content Padding */
+.main-content {
+    padding: 24px 24px 60px 24px;
+}
+
+/* About / Services Section - 3 Card Variants */
+.favourites-section h2 {
+    font-size: 20px;
+    color: #102a3c;
+    margin-bottom: 16px;
+}
+
+.cards-row {
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* Using inline-block for horizontal card layout without Flexbox/Grid */
+.card {
+    display: inline-block;
+    vertical-align: top;
+    width: 32%;
+    min-height: 125px;
+    padding: 18px 16px;
+    margin-right: 2%;
+}
+
+/* Remove right margin on the 3rd card so it fits on the same line */
+.card:last-child {
+    margin-right: 0;
+}
+
+.card h3 {
+    font-size: 17px;
+    color: #102a3c;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #2e4756;
+}
+
+/* Variant 1: Rounded corners, soft mint background, light border */
+.card-style-1 {
+    background-color: #f6faf9;
+    border: 1px solid #d4e2df;
+    border-radius: 6px;
+}
+
+/* Variant 2: Thick gold border, subtle rounded corners, soft box-shadow */
+.card-style-2 {
+    background-color: #f9fbfa;
+    border: 2px solid #dfa842;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(223, 168, 66, 0.15);
+}
+
+/* Variant 3: Sharp square edges, dark slate border, inner shadow effect */
+.card-style-3 {
+    background-color: #f6faf9;
+    border: 2px solid #486966;
+    border-radius: 0px;
+    box-shadow: 0 2px 4px rgba(22, 58, 53, 0.08);
+}
+
+/* Gallery & Testimonial Section */
+.gallery-section {
+    margin-bottom: 32px;
+}
+
+/* Overflow: hidden crops the image cleanly inside the rounded border */
+.banner-frame {
+    width: 100%;
+    height: 115px;
+    border-radius: 6px;
+    border: 1px solid #d4e2df;
+    overflow: hidden;
+    background-color: #dce8e1;
+    margin-bottom: 16px;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.testimonial-quote {
+    font-size: 14px;
+    color: #1b3544;
+    margin-bottom: 20px;
+}
+
+.location-line {
+    font-size: 14px;
+    color: #1b3544;
+}
+
+/* Contact Form Section */
+.contact-section {
+    padding-left: 6px;
+}
+
+.contact-section h2 {
+    font-size: 20px;
+    color: #102a3c;
+    margin-bottom: 14px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    color: #1b3544;
+    margin-bottom: 6px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 14px;
+    color: #334e5e;
+    background-color: #fbfdfd;
+    border: 1px solid #8fa6b2;
+    border-radius: 3px;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #0e6b68;
+    background-color: #ffffff;
+}
+
+.submit-btn {
+    background-color: #0e6b68;
+    color: #ffffff;
+    font-size: 14px;
+    padding: 9px 56px 9px 14px;
+    border: 1px solid #0b5452;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #0a5350;
+}
+
+/* Bottom whitespace below footer like the sample layout */
+.bottom-bar {
+    margin-bottom: 42px;
+}
+</style>
+</head>
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- Navigation Bar -->
+        <header class="top-bar">
+            <div class="brand-logo">LEAF &amp; BEAN</div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <!-- Hero Section with Positioned Overlay and z-index -->
+        <section id="home" class="hero-box">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <p class="hero-tag">YOUR NEIGHBOURHOOD CAFÉ</p>
+                <h1>Good coffee.<br>A little room to pause.</h1>
+                <p class="hero-sub">Fresh brews and warm bites.</p>
+                <a href="#contact" class="cta-btn">Visit us</a>
+            </div>
+        </section>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- About / Services Section (3 Card Variants using inline-block) -->
+            <section id="services" class="favourites-section">
+                <h2>Our favourites</h2>
+                
+                <div class="cards-row">
+                    <!-- Variant 1: Soft rounded corners & subtle border -->
+                    <div class="card card-style-1">
+                        <h3>Fresh brews</h3>
+                        <p>Coffee, made your way.</p>
+                    </div><!--
+                    --><!-- Variant 2: Warm gold border & slight shadow --><!--
+                    --><div class="card card-style-2">
+                        <h3>Warm bites</h3>
+                        <p>Sandwiches and treats.</p>
+                    </div><!--
+                    --><!-- Variant 3: Sharp corners & bold dark border --><!--
+                    --><div class="card card-style-3">
+                        <h3>Study corner</h3>
+                        <p>Space for your ideas.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery & Testimonial Section -->
+            <section id="about" class="gallery-section">
+                <div class="banner-frame">
+                    <!-- TODO: Keep banner.svg or replace src with your own cafe photo -->
+                    <img src="banner.svg" alt="Minimalist mountain landscape art on the cafe wall" class="gallery-img">
+                </div>
+                <blockquote class="testimonial-quote">
+                    &ldquo;A lovely place for a study break.&rdquo;
+                </blockquote>
+                <!-- TODO: You can customize the city/street name below -->
+                <p class="location-line">Invertis University, Bareilly</p>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="contact-section">
+                <h2>Come say hello</h2>
+                <form action="#" method="post" class="contact-form">
+                    <div class="form-group">
+                        <label for="user-name">Your name</label>
+                        <input type="text" id="user-name" name="name" placeholder="Prince Kumar" required minlength="2">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-email">Email</label>
+                        <input type="email" id="user-email" name="email" placeholder="princeedu518@gmail.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="user-msg">Message</label>
+                        <input type="text" id="user-msg" name="message" placeholder="I would like to ask about your study corner." required minlength="5">
+                    </div>
+
+                    <button type="submit" class="submit-btn">Send message</button>
+                </form>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bottom-bar">
+            <div class="copyright-text">&copy; 2026 LEAF &amp; BEAN</div>
+            <div class="footer-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </footer>
+
+    </div>
+
+</body>
+</html>
